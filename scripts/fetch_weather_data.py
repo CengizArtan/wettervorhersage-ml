@@ -1,42 +1,69 @@
 import requests
 import pandas as pd
-from datetime import datetime
+from datetime import date
 
 # API-Details
-API_KEY = "5d5c062bc3fba2e60744082d3b114e81"  
-BASE_URL = "http://api.openweathermap.org/data/2.5/onecall"
+API_KEY = "d0d5234f99msh68b1f0b74d956cbp191c67jsn2fb974298714"  # RapidAPI-Key
+BASE_URL = "https://meteostat.p.rapidapi.com/point/monthly"
 
 # Standort festlegen (Köln)
 latitude = 50.9375  # Breitengrad von Köln
 longitude = 6.9603  # Längengrad von Köln
+altitude = 48  # Höhe (optional, ca. 48 Meter für Köln)
+
+# Zeitraum festlegen
+start_date = "2018-01-01"  # Startdatum
+end_date = date.today().strftime("%Y-%m-%d")  # Automatisches heutiges Datum
+
+# Anfrage-Header und Parameter
+headers = {
+    "x-rapidapi-host": "meteostat.p.rapidapi.com",
+    "x-rapidapi-key": API_KEY
+}
 params = {
     "lat": latitude,
     "lon": longitude,
-    "exclude": "minutely,hourly,alerts",
-    "units": "metric",
-    "appid": API_KEY
+    "alt": altitude,
+    "start": start_date,
+    "end": end_date
 }
 
-# API-Anfrage
-response = requests.get(BASE_URL, params=params)
-data = response.json()
+try:
+    # API-Anfrage
+    response = requests.get(BASE_URL, headers=headers, params=params)
+    print("API-URL:", response.url)
+    print("Status Code:", response.status_code)
 
+    # Überprüfen, ob die Anfrage erfolgreich war
+    if response.status_code != 200:
+        print("Fehler bei der API-Anfrage:", response.text)
+        exit()
 
+    # JSON-Daten extrahieren
+    data = response.json()
 
-if "daily" not in data:
-    print("Fehler in der API-Antwort:", data)
-    exit()
+    # Überprüfen, ob die Daten vorhanden sind
+    if "data" not in data:
+        print("Fehler: Keine Daten im API-Response gefunden.")
+        exit()
 
-# Daten verarbeiten
-daily_data = data["daily"]
-weather_list = []
-for day in daily_data:
-    date = datetime.fromtimestamp(day["dt"]).strftime('%Y-%m-%d')
-    temp = day["temp"]["day"]
-    humidity = day["humidity"]
-    weather_list.append({"date": date, "temp": temp, "humidity": humidity})
+    # Daten in ein DataFrame umwandeln
+    weather_data = pd.DataFrame(data["data"])
 
-# Daten speichern
-df = pd.DataFrame(weather_list)
-df.to_csv("../data/wetterdaten.csv", index=False)
-print("Wetterdaten gespeichert!")
+    # Spaltenüberschriften setzen
+    weather_data.columns = [
+        "Date", "Average Temperature (°C)", "Min Temperature (°C)", 
+        "Max Temperature (°C)", "Precipitation (mm)", "Wind Speed (km/h)", 
+        "Pressure (hPa)", "Sunshine Duration (h)"
+    ]
+
+    # Datumsformat korrigieren
+    weather_data["Date"] = pd.to_datetime(weather_data["Date"]).dt.strftime("%d.%m.%Y")
+
+    # CSV-Datei speichern
+    file_path = "../data/weather_data.csv"
+    weather_data.to_csv(file_path, index=False, sep=";", encoding="utf-8-sig")
+    print("Wetterdaten gespeichert unter:", file_path)
+
+except Exception as e:
+    print(f"Ein Fehler ist aufgetreten: {e}")
