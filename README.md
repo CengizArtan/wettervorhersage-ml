@@ -1,38 +1,80 @@
-# Wettervorhersage mit Machine Learning 🌦️
+Wettervorhersage mit Machine Learning 🌦️
 
-## Projektbeschreibung
-Dieses Projekt analysiert historische Wetterdaten für **Köln** und sagt die tägliche Temperatur basierend auf Luftfeuchtigkeit und anderen Faktoren vorher.
+Projektbeschreibung
 
+Dieses Projekt dient als Lernplattform zur Anwendung und Vertiefung von Data-Science- und Machine-Learning-Kenntnissen. Ziel ist es, historische Wetterdaten für Köln zu analysieren und basierend auf Faktoren wie Temperatur und Luftfeuchtigkeit Vorhersagen für die nächsten Tage zu erstellen.
 
-## Ordnerstruktur
-- `data/`: Enthält die Rohdaten (`wetterdaten.csv`) und die aufbereiteten Daten (`processed_data.csv`).
-- `notebooks/`: Jupyter-Notebooks für Datenanalyse und Visualisierung.
-- `scripts/`: Python-Skripte für die Datenverarbeitung und Modelltraining.
+________________________________________
 
-## Anforderungen
+Projektstruktur 📂
+
+•	data/: Enthält die Daten des Projekts.
+    o	dummy_data.csv: Dummy-Daten zur Simulation des Workflows.
+    o	processed_data.csv: Aufbereitete Daten.
+•	notebooks/: Jupyter-Notebooks für explorative Datenanalyse und Visualisierung.
+•	scripts/: Python-Skripte für Datenbeschaffung, Aufbereitung und Modellierung.
+•	README.md: Projektbeschreibung und Dokumentation.
+________________________________________
+
+Projektstatus 🚧
+
+Das Projekt ist noch in Bearbeitung und wird iterativ aufgebaut. Der aktuelle Stand basiert auf Dummy-Daten, bis die OpenWeather-API aktiviert ist.
+
+Aktueller Stand:
+
+•	✅ Abgeschlossen:
+    o	Projektstruktur angelegt.
+    o	Explorations-Notebook für Visualisierungen vorbereitet.
+    o	Dummy-Daten hinzugefügt.
+•	🔄 In Arbeit:
+    o	API-Integration zur Beschaffung realer Wetterdaten.
+    o	Datenaufbereitung und -speicherung.
+    o	Modelltraining und -evaluation.
+•	🛠️ Geplant:
+    o	Optimierung und Evaluation des Machine-Learning-Modells.
+    o	Visualisierung und Dokumentation der Ergebnisse.
+________________________________________
+
+Roadmap 🗺️
+
+1.	Phase 1: Datenbeschaffung
+    o	Nutzung der OpenWeather-API zur Sammlung von Wetterdaten für Köln.
+2.	Phase 2: Datenaufbereitung
+    o	Berechnung von Temperaturdifferenzen.
+    o	Hinzufügen von zeitlichen Features (z. B. Wochentag, Monat).
+    o	Transformation und Normierung der Daten.
+3.	Phase 3: Explorative Analyse
+    o	Visualisierung von Trends, Mustern und Zusammenhängen (z. B. Luftfeuchtigkeit vs. Temperatur).
+4.	Phase 4: Modelltraining
+    o	Entwicklung und Validierung eines Machine-Learning-Modells zur Temperaturvorhersage.
+5.	Phase 5: Ergebnispräsentation
+    o	Darstellung der Vorhersagen durch ansprechende Visualisierungen.
+    o	Abschlussdokumentation des Projekts.
+________________________________________
+Anforderungen ⚙️
 Installiere die benötigten Bibliotheken mit:
-```bash
-pip install -r requirements.txt
 
-## Geplante Analysen
-1. **Temperaturtrends**:
-   - Tages- und Wochenschwankungen der Temperatur analysieren.
-2. **Zusammenhänge**:
-   - Beziehung zwischen Luftfeuchtigkeit und Temperatur untersuchen.
-3. **Vorhersage**:
-   - Ein Machine-Learning-Modell entwickeln, das die Temperatur der nächsten Tage vorhersagt.
+    -   pip install -r requirements.txt
 
-## Datenaufbereitung
-- Berechnung von Temperaturdifferenzen zwischen aufeinanderfolgenden Tagen.
-- Hinzufügen von Wochentagen und Monatsinformationen.
-- Normierung der Temperatur für Machine-Learning-Modelle.
+________________________________________
 
-## Visualisierungen
-- **Temperaturtrends:** Liniendiagramme zeigen den Verlauf der Temperatur über Zeit.
-- **Änderungen:** Balkendiagramme visualisieren tägliche Schwankungen.
+Datenaufbereitung 🔧
 
-## Nächste Schritte
-1. Aktivierung des API-Schlüssels abwarten.
-2. Daten abrufen und speichern.
-3. Machine-Learning-Modell trainieren und evaluieren.
-4. Ergebnisse visualisieren und dokumentieren.
+•	📊 Feature Engineering:
+    o	Berechnung von Temperaturdifferenzen zwischen aufeinanderfolgenden Tagen.
+    o	Hinzufügen von Wochentagen und Monatsinformationen.
+•	⚙️ Transformation und Normierung:
+    o	Normierung der Temperaturdaten für den Einsatz in Machine-Learning-Modellen.
+________________________________________
+
+Visualisierungen 📈
+
+•	Temperaturtrends:
+    o	Liniendiagramme zeigen den Verlauf der Temperatur über die Zeit.
+•	Änderungen:
+    o	Balkendiagramme visualisieren tägliche Temperaturdifferenzen.
+________________________________________
+
+Hinweis ⚠️
+
+Dieses Repository wird regelmäßig erweitert. Der aktuelle Stand basiert auf Dummy-Daten, um den Workflow zu simulieren. Ziel ist es, das Projekt bis zum Jahresende abzuschließen und die Ergebnisse in einer finalen Version zu präsentieren.
