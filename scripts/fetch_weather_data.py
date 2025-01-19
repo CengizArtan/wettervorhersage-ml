@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 # API-Details
-API_KEY = "5d5c062bc3fba2e60744082d3b114e81"  # Dein API-Schlüssel
+API_KEY = "5d5c062bc3fba2e60744082d3b114e81"  
 BASE_URL = "http://api.openweathermap.org/data/2.5/onecall"
 
 # Standort festlegen (Köln)
@@ -21,10 +21,8 @@ params = {
 response = requests.get(BASE_URL, params=params)
 data = response.json()
 
-# API-Antwort anzeigen
-print(data)  # Füge dies hier ein, um die gesamte API-Antwort anzuzeigen
 
-# Prüfe, ob 'daily' in der Antwort enthalten ist
+
 if "daily" not in data:
     print("Fehler in der API-Antwort:", data)
     exit()
